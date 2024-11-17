@@ -1,0 +1,61 @@
+\chapter{Analysis}\label{cp:analysis}
+
+\section{Static Margin}\label{sec:static_margin}
+
+Our static margin was calculated to be \qty{31.42}{\percent}, which is outside of the acceptable range required (\qtyrange{5}{25}{\percent}). This does indicate that this current craft iteration is stable but not optimally stable as the restoring moment around the \acrshort{cg} would be too strong.
+
+In other words, when some pitch disturbance is introduced to the craft, a stabilizing restoring moment about the center of gravity would be applied as desired. However, the applied stabilizing moment would be too large, causing the nose to pitch too much and potentially overshoot the desired \acrshort{aoa} for \acrshort{slf}. This restoring moment may continue to overshoot above and below the desired \acrshort{aoa}, potentially cascading into oscillations and unstable pitch dynamics.
+
+The high static margin would also make the control response of our aircraft very slow. If we want the autopilot to pitch to a desired angle of attack, this command will be delayed and take longer to complete. This makes it harder to maintain a desired pitch angle and adds to the potential for instability. 
+
+To remedy this high static margin, adjustments to the geometry, size, and position of our wing and tail must be made. These changes would bring the \acrshort{np} and \acrshort{cg} closer to one another, reducing the static margin to within the acceptable range. Altering the features of our wing and tail through different design iterations will highlight which features contribute more to our static margin and which configuration is more desirable to balance stability and maneuverability. 
+
+More specifically, we want to adjust the wing's $x$-position, as well as the airfoil shapes and chord lengths of the wing and tail. These aspects would be our primary focus when determining how to alter aspects of our designs in subsequent design iterations.
+
+\section{Tail Sizing Coefficients}\label{sec:tail_sizing}
+
+\subsection{Horizontal Tail}
+
+The horizontal tail volume coefficient is defined using \autoref{eq:C_HT} from \citet{grager2024}.
+
+\begin{align}
+    C_{HT} = \frac{S_{HT} L_{HT}}{c S_{ref}} \label{eq:C_HT}
+\end{align}
+
+\noindent{}Where \gls{C_HT} is the horizontal tail volume coefficient, \gls{S_HT} is the planform area of the horizontal tail, \gls{L_HT} is the length from quarter chord of the primary wing to quarter chord of the horizontal tail, \gls{c} is the chord length of the primary wing, and \gls{S_ref} is the planform area of the primary wing.
+
+The range that most coefficients fall in between given in class was \numrange{0.3}{0.6} \citep{grager2024}. Our group chose to take the average and aim for a horizontal sizing coefficient of \num{0.45}. The chord length \gls{c} for our primary wing is \qty{19.98}{\centi\meter} $\left(\qty{7.87}{in}\right)$ and the wingspan \gls{b} is \qty{216}{\centi\meter} $\left(\qty{85}{in}\right)$. The reference surface area is found by multiplying our chord length \gls{c} by our wingspan \gls{b} to find $S_{ref} = bc = \left(\qty{19.98}{\centi\meter}\right)\left(\qty{216}{\centi\meter}\right) = \qty{4316}{\centi\meter\squared} = \qty{669}{in\squared}$.
+
+Assuming that we will be using a carbon fiber spar length of \qty{91.44}{\centi\meter} $\left(\qty{36}{in}\right)$ and assuming that it starts \qty{27.485}{\centi\meter} $\left(\qty{10.82}{in}\right)$ from the nose (also the assumed \acrshort{cg}), we end up with an \gls{L_HT} of approximately \qty{88}{\centi\meter} $\left(\qty{35}{in}\right)$. Solving the horizontal tail volume coefficient equation for \gls{S_HT}, we get a value of \qty{440.935}{\centi\meter\squared} $\left(\qty{63.35}{in^2}\right)$. Another assumption that will be made is that the chord length will be \qty{15}{\centi\meter} $\left(\qty{5.91}{in}\right)$ on the horizontal tail which results in a horizontal tail span of \qty{29.296}{\centi\meter} $\left(\qty{11.53}{in}\right)$.
+
+\subsection{Vertical Tail}
+
+The vertical tail volume coefficient is defined using \autoref{eq:C_VT} from \citet{grager2024}.
+
+\begin{align}
+    C_{VT} = \frac{S_{VT} L_{VT}}{b S_{ref}}\label{eq:C_VT}
+\end{align}
+
+\noindent{}Where \gls{C_VT} is the vertical tail volume coefficient, \gls{S_VT} is the planform area of the vertical tail, \gls{L_VT} is the length from quarter chord of the primary wing to quarter chord of the vertical tail, \gls{c} is the chord length of the primary wing, and \gls{S_ref} is the planform area of the primary wing.
+
+The range most coefficients fall in between given in class was between \numrange{0.02}{0.05} \citep{grager2024}. Our group chose to once again take the average and chose a vertical tail volume coefficient of \num{0.035}. The chord length \gls{c} for our primary wing is \qty{19.98}{\centi\meter} $\left(\qty{7.87}{in}\right)$ and the wingspan \gls{b} is \qty{216}{\centi\meter} $\left(\qty{85}{in}\right)$. The reference surface area is found by multiplying our chord length \gls{c} by our wingspan \gls{b} to find $S_{ref} = bc = \left(\qty{19.98}{\centi\meter}\right)\left(\qty{216}{\centi\meter}\right) = \qty{4316}{\centi\meter\squared} = \qty{669}{in\squared}$.
+
+Assuming that we will be using a carbon fiber spar length of \qty{91.44}{\centi\meter} $\left(\qty{36}{in}\right)$ and assuming that it starts \qty{27.485}{\centi\meter} $\left(\qty{10.82}{in}\right)$ from the nose (also the assumed center of gravity). This results in a \gls{L_VT} of \qty{88}{\centi\meter} $\left(\qty{34.65}{in}\right)$. Solving the vertical tail volume coefficient equation for the platform area of the vertical tail, we find \gls{S_VT} is \qty{370.756}{\centi\meter\squared} $\left(\qty{57.47}{in\squared}\right)$. Assuming that we would like a chord length of \qty{19.98}{\centi\meter} $\left(\qty{7.87}{in}\right)$, we calculated a vertical tail wingspan of \qty{18.556}{\centi\meter} $\left(\qty{7.31}{in}\right)$.
+
+\subsection{Tail Sizing Summary}
+
+We believe that the general tail sizing coefficients \gls{C_HT} and \gls{C_VT} that we selected to be \numlist{0.45;0.035} respectively are relatively small for our mission. Our team came to this consensus after receiving feedback that—even before analysis—the wings appeared visually small. This is most evident when viewed in the top-down view, shown in \autoref{fig:top_view}. We acknowledge that at this time these numbers are just a starting point and are subject to change later on. After further stability testing, our team will most likely choose to increase the coefficients.
+
+\section{Pitching Moment}\label{sec:pitching_moment}
+
+At a cruise speed of \qty{17.88}{\meter\per\second} $\left(\qty{40}{MPH}\right)$, our desired angle of attack is \qty{-2.85}{\degree}, as shown in \autoref{fig:lift_vs_aoa}. At this angle, our pitching moment about the center of gravity is \qty{-1.54}{\newton\meter} $\left(\qty{-1.1357}{ft\cdot lbf}\right)$, as can be seen in \autoref{fig:moment_vs_aoa}. This pitching moment is too large for the \acrshort{slf} \acrshort{aoa} and will lead to unstable pitch dynamics as mentioned in \autoref{sec:static_margin}. We believe this is largely due to a combination of our wing's high-lift production and our high static margin. Regardless, this pitching moment is too high, so another main focus for future improvements must be on reducing this moment to improve longitudinal stability.  
+
+\section{Future Improvements}\label{sec:future_improvements}
+
+In subsequent design iterations, we will experiment with increasing the chord length and thickness of the aircraft's wing and tail. This may include running a design iteration with a \acrshort{naca} 0012 airfoil for the tail as opposed to the current \acrshort{naca} 0010. This is primarily for manufacturing reasons; too thin a a wing or tail may not bond to the spars properly or may not handle the aerodynamic loads of the aircraft in flight.
+
+We also plan to change the wing location and sizing in future designs. By moving the wing forward, we may be able to decrease our static margin, bringing us closer to proper stability. We also may have to increase the primary wing's chord length once we have run wing loading calculations.
+
+If our aircraft's pitching moment at the \acrshort{slf} \acrshort{aoa} is still too large, we may have to consider changing our wing airfoil to a thinner one, \textit{e.g.}, the \acrshort{naca} 2412. With this airfoil, our wing will produce less lift but will generate lower pitching moments and may increase our pitch stability. This change will be analyzed in future design iterations.
+
+All these improvements will be performed with a more refined \acrshort{cg} calculation. During each design iteration, we will add more detail to the \acrshort{cad} model, increasing the accuracy and location of our \acrshort{cg}.
